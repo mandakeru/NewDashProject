@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Associate number:</strong>
+  <%= @associate.associate_number %>
+</p>
+
+<p>
+  <strong>Association date:</strong>
+  <%= @associate.association_date %>
+</p>
+
+<p>
+  <strong>Payment:</strong>
+  <%= @associate.payment %>
+</p>
+
+<%= link_to 'Edit', edit_associate_path(@associate) %> |
+<%= link_to 'Back', associates_path %>
