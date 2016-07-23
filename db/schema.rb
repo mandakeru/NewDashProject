@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160720034648) do
+ActiveRecord::Schema.define(version: 20160721201642) do
 
   create_table "addresses", force: :cascade do |t|
     t.string   "street"
@@ -41,17 +41,14 @@ ActiveRecord::Schema.define(version: 20160720034648) do
     t.integer  "customer_code"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
+    t.string   "name"
+    t.string   "cpf"
+    t.string   "rg"
+    t.date     "birthdate"
+    t.integer  "customer_type"
   end
 
   add_index "customers", ["customer_code"], name: "index_customers_on_customer_code", unique: true
-
-  create_table "dependents", force: :cascade do |t|
-    t.integer  "associate_id"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
-  end
-
-  add_index "dependents", ["associate_id"], name: "index_dependents_on_associate_id"
 
   create_table "payments", force: :cascade do |t|
     t.string   "title"
@@ -69,8 +66,10 @@ ActiveRecord::Schema.define(version: 20160720034648) do
     t.string   "cpf"
     t.string   "rg"
     t.date     "birthdate"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.string   "personable_type"
+    t.integer  "personable_id"
   end
 
   add_index "people", ["cpf"], name: "index_people_on_cpf", unique: true

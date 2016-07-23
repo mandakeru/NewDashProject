@@ -24,7 +24,7 @@
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>A</b>LT</span>
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>Dash</b>Projects</span>
+      <span class="logo-lg"><b>4Ducks</b>Manangement</span>
     </a>
 
     <!-- Header Navbar: style can be found in header.less -->
@@ -241,7 +241,7 @@
                 <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
 
                 <p>
-                  Alexander Pierce - Web Developer
+                  <%#= current_user.name %>
                   <small>Member since Nov. 2012</small>
                 </p>
               </li>
@@ -302,17 +302,17 @@
                 <ul class="sidebar-menu">
                     <li class="header">MAIN NAVIGATION</li>
         <li class="active treeview">
-          <%#= link_to root_path do %>
+          <%= link_to root_path do %>
             <i class="fa fa-dashboard"></i> <span>Dashboard</span> <i class="fa fa-angle-left pull-right"></i>
-          <%# end %>
+          <% end %>
           
         </li>
         <li class="treeview">
-          <%#= link_to sprints_path do %>
+          <%= link_to customers_path do %>
             <i class="fa fa-files-o"></i>
-            <span>Sprints</span>
-            <span class="label label-primary pull-right">4</span>
-          <%# end %>
+            <span>Clientes</span>
+            <span class="label label-primary pull-right"><%= @customer_total %></span>
+          <% end %>
           
         </li>
         <li>

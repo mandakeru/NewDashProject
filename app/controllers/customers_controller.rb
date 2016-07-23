@@ -1,10 +1,12 @@
 class CustomersController < ApplicationController
+  respond_to :html  
   before_action :set_customer, only: [:show, :edit, :update, :destroy]
 
   # GET /customers
   # GET /customers.json
   def index
     @customers = Customer.all
+    @customer_total = Customer.all.count
   end
 
   # GET /customers/1
@@ -15,6 +17,8 @@ class CustomersController < ApplicationController
   # GET /customers/new
   def new
     @customer = Customer.new
+    respond_with(@customer)
+   
   end
 
   # GET /customers/1/edit
@@ -25,7 +29,6 @@ class CustomersController < ApplicationController
   # POST /customers.json
   def create
     @customer = Customer.new(customer_params)
-
     respond_to do |format|
       if @customer.save
         format.html { redirect_to @customer, notice: 'Customer was successfully created.' }
@@ -68,7 +71,11 @@ class CustomersController < ApplicationController
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
-    def customer_params
-      params.require(:customer).permit(:customer_code)
-    end
+  def customer_params
+   params.require(:customer).permit(
+    :customer_code, :name, :cpf, :rg, :birthdate,
+    addresses_attributes: [:id, :street, :number, :neighborhood, :state, :nation],
+    people_attributes: [:id, :name, :cpf, :rg, :birthdate],
+    phones_attributes: [:id, :phone1, :phone2])
+  end
 end
