@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160721201642) do
+ActiveRecord::Schema.define(version: 20160725012702) do
 
   create_table "addresses", force: :cascade do |t|
     t.string   "street"
@@ -41,10 +41,6 @@ ActiveRecord::Schema.define(version: 20160721201642) do
     t.integer  "customer_code"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
-    t.string   "name"
-    t.string   "cpf"
-    t.string   "rg"
-    t.date     "birthdate"
     t.integer  "customer_type"
   end
 
@@ -66,10 +62,8 @@ ActiveRecord::Schema.define(version: 20160721201642) do
     t.string   "cpf"
     t.string   "rg"
     t.date     "birthdate"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
-    t.string   "personable_type"
-    t.integer  "personable_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   add_index "people", ["cpf"], name: "index_people_on_cpf", unique: true
@@ -85,6 +79,17 @@ ActiveRecord::Schema.define(version: 20160721201642) do
   end
 
   add_index "phones", ["phoneable_id", "phoneable_type"], name: "index_phones_on_phoneable_id_and_phoneable_type"
+
+  create_table "products", force: :cascade do |t|
+    t.string   "name"
+    t.text     "description"
+    t.decimal  "price"
+    t.integer  "quantity"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "products", ["name"], name: "index_products_on_name", unique: true
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false

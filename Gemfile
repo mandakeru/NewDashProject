@@ -43,6 +43,7 @@ gem 'morrisjs-rails'
 gem 'switchery-rails'
 gem 'bootstrap-select-rails'
 gem 'fastclick-rails'
+gem 'puma'
 
 gem 'jasny-bootstrap-rails'
 

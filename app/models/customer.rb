@@ -6,10 +6,6 @@
 #  customer_code :integer
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
-#  name          :string
-#  cpf           :string
-#  rg            :string
-#  birthdate     :date
 #  customer_type :integer
 #
 # Indexes
@@ -18,7 +14,7 @@
 #
 
 class Customer < ActiveRecord::Base
-  has_one :person, as: :personable, dependent: :destroy
+  belongs_to :person
   has_one :address, as: :addressable
   has_one :phone, as: :phoneable
   
