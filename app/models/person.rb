@@ -2,13 +2,14 @@
 #
 # Table name: people
 #
-#  id         :integer          not null, primary key
-#  name       :string
-#  cpf        :string
-#  rg         :string
-#  birthdate  :date
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
+#  id          :integer          not null, primary key
+#  name        :string
+#  cpf         :string
+#  rg          :string
+#  birthdate   :date
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#  customer_id :integer
 #
 # Indexes
 #
@@ -17,7 +18,7 @@
 #
 
 class Person < ActiveRecord::Base 
-  has_one :customer
+  belongs_to :customer
   has_one :address, as: :addressable
   has_one :phone, as: :phoneable
 
@@ -25,6 +26,9 @@ class Person < ActiveRecord::Base
   accepts_nested_attributes_for :address, allow_destroy: true, reject_if: :all_blank
   
   accepts_nested_attributes_for :phone, allow_destroy: true, reject_if: :all_blank
+  
+  accepts_nested_attributes_for :customer, allow_destroy: true, reject_if: :all_blank
+  
   
   
 end

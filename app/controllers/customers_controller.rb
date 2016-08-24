@@ -16,8 +16,10 @@ class CustomersController < ApplicationController
 
   # GET /customers/new
   def new
+    
+    @person = Person.new
     @customer = Customer.new
-    respond_with(@customer)
+   
    
   end
 
@@ -29,9 +31,10 @@ class CustomersController < ApplicationController
   # POST /customers.json
   def create
     @customer = Customer.new(customer_params)
+    binding.pry
     respond_to do |format|
       if @customer.save
-        format.html { redirect_to @customer, notice: 'Customer was successfully created.' }
+        format.html { redirect_to customer_path, notice: 'Customer was successfully created.' }
         format.json { render :show, status: :created, location: @customer }
       else
         format.html { render :new }
@@ -75,7 +78,7 @@ class CustomersController < ApplicationController
    params.require(:customer).permit(
     :customer_code, :name, :cpf, :rg, :birthdate,
     addresses_attributes: [:id, :street, :number, :neighborhood, :state, :nation],
-    people_attributes: [:id, :name, :cpf, :rg, :birthdate],
+    person_attributes: [:id, :name, :cpf, :rg, :birthdate],
     phones_attributes: [:id, :phone1, :phone2])
   end
 end

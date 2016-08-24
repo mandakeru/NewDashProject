@@ -11,7 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160725012702) do
+ActiveRecord::Schema.define(version: 20160802020229) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "addresses", force: :cascade do |t|
     t.string   "street"
@@ -25,7 +28,7 @@ ActiveRecord::Schema.define(version: 20160725012702) do
     t.datetime "updated_at",       null: false
   end
 
-  add_index "addresses", ["addressable_type", "addressable_id"], name: "index_addresses_on_addressable_type_and_addressable_id"
+  add_index "addresses", ["addressable_type", "addressable_id"], name: "index_addresses_on_addressable_type_and_addressable_id", using: :btree
 
   create_table "associates", force: :cascade do |t|
     t.integer  "associate_number"
@@ -35,16 +38,18 @@ ActiveRecord::Schema.define(version: 20160725012702) do
     t.datetime "updated_at",       null: false
   end
 
-  add_index "associates", ["associate_number"], name: "index_associates_on_associate_number", unique: true
+  add_index "associates", ["associate_number"], name: "index_associates_on_associate_number", unique: true, using: :btree
 
   create_table "customers", force: :cascade do |t|
     t.integer  "customer_code"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
     t.integer  "customer_type"
+    t.integer  "person_id"
   end
 
-  add_index "customers", ["customer_code"], name: "index_customers_on_customer_code", unique: true
+  add_index "customers", ["customer_code"], name: "index_customers_on_customer_code", unique: true, using: :btree
+  add_index "customers", ["person_id"], name: "index_customers_on_person_id", using: :btree
 
   create_table "payments", force: :cascade do |t|
     t.string   "title"
@@ -55,19 +60,20 @@ ActiveRecord::Schema.define(version: 20160725012702) do
     t.datetime "updated_at",  null: false
   end
 
-  add_index "payments", ["code"], name: "index_payments_on_code", unique: true
+  add_index "payments", ["code"], name: "index_payments_on_code", unique: true, using: :btree
 
   create_table "people", force: :cascade do |t|
     t.string   "name"
     t.string   "cpf"
     t.string   "rg"
     t.date     "birthdate"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.integer  "customer_id"
   end
 
-  add_index "people", ["cpf"], name: "index_people_on_cpf", unique: true
-  add_index "people", ["rg"], name: "index_people_on_rg", unique: true
+  add_index "people", ["cpf"], name: "index_people_on_cpf", unique: true, using: :btree
+  add_index "people", ["rg"], name: "index_people_on_rg", unique: true, using: :btree
 
   create_table "phones", force: :cascade do |t|
     t.string   "phone1"
@@ -78,7 +84,7 @@ ActiveRecord::Schema.define(version: 20160725012702) do
     t.datetime "updated_at",     null: false
   end
 
-  add_index "phones", ["phoneable_id", "phoneable_type"], name: "index_phones_on_phoneable_id_and_phoneable_type"
+  add_index "phones", ["phoneable_id", "phoneable_type"], name: "index_phones_on_phoneable_id_and_phoneable_type", using: :btree
 
   create_table "products", force: :cascade do |t|
     t.string   "name"
@@ -89,7 +95,7 @@ ActiveRecord::Schema.define(version: 20160725012702) do
     t.datetime "updated_at",  null: false
   end
 
-  add_index "products", ["name"], name: "index_products_on_name", unique: true
+  add_index "products", ["name"], name: "index_products_on_name", unique: true, using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -106,7 +112,8 @@ ActiveRecord::Schema.define(version: 20160725012702) do
     t.datetime "updated_at",                          null: false
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "customers", "people"
 end
