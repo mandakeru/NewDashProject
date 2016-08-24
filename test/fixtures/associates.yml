@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  associate_number: 1
+  association_date: 2016-07-20
+  payment: 1
+
+two:
+  associate_number: 1
+  association_date: 2016-07-20
+  payment: 1

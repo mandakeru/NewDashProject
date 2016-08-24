@@ -29,7 +29,7 @@ body {
 /* Layout */
 .wrapper {
   min-height: 100%;
-  position: relative;
+  position: static !important;
   overflow: hidden;
 }
 .wrapper:before,
@@ -63,7 +63,15 @@ body {
   transition: transform 0.3s ease-in-out, margin 0.3s ease-in-out;
   margin-left: 230px;
   z-index: 820;
+
 }
+.main-footer{
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+  
 .layout-top-nav .content-wrapper,
 .layout-top-nav .right-side,
 .layout-top-nav .main-footer {

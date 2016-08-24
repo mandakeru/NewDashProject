@@ -1,0 +1,77 @@
+<div class="box box-info col-sm-8">
+  <div class="box-header with-border">
+    <h3 class="box-title">Novo Cliente</h3>
+  </div>
+  
+  <form class="form-horizontal">
+    <div class="box-body">
+      <%= simple_form_for (@people) do |f| %>
+       <% if @people.errors.any? %>
+         <div id="error_explanation">
+          <h2><%= pluralize(@people.errors.count, "error") %> prohibited this customer from being saved:</h2>
+    
+          <ul>
+          <% @people.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+          </ul>
+        </div>
+      <% end %>
+  
+  <div class="form-group">
+     <label for="inputCustomerCode" class="col-sm-2 control-label">Nome </label>
+     <div class="col-sm-10">
+        <%= f.input :name, label: false, class: 'form-control' %>
+     </div>
+  </div>
+  <div class="form-group">
+     <label for="inputCustomerCode" class="col-sm-2 control-label">CPF </label>
+     <div class="col-sm-10">
+        <%= f.input :cpf, label: false, class: 'form-control' %>
+     </div>
+  </div>
+  <div class="form-group">
+     <label for="inputCustomerCode" class="col-sm-2 control-label">RG </label>
+     <div class="col-sm-10">
+        <%= f.input :rg, label: false, class: 'form-control' %>
+     </div>
+  </div>
+  <div class="form-group">
+     <label for="inputCustomerCode" class="col-sm-2 control-label">Nascimento </label>
+     <div class="col-sm-10">
+        <%= f.input :birthdate, label: false, class: 'form-control' %>
+     </div>
+  </div>
+      
+      
+      
+      
+  <div class="form-group"> 
+   <%= f.simple_fields_for [@customer] do |ff| %>
+   <label for="inputCustomerCode" class="col-sm-2 control-label">Código </label>
+    <div class="col-sm-10">
+      <%= ff.input :customer_code, label: false, class: 'form-control' %>
+    </div>
+    <% end %>
+  </div>    
+  
+  
+  
+  
+  
+  
+    
+  
+  <div class="box-footer">
+   <button class="btn btn-default"><%= link_to :back, 'Voltar' %></button> 
+    <%= f.button :submit, class: 'btn btn-info pull-right' %>
+  </div>
+
+  <% end %>
+    </div>
+    
+  </form>
+  
+
+</div>
+

@@ -28,7 +28,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 # Use Unicorn as the app server
 # gem 'unicorn'
-
+gem 'simple_form'
 gem 'pry'
 gem 'annotate'
 gem 'enumerize'
@@ -43,6 +43,7 @@ gem 'morrisjs-rails'
 gem 'switchery-rails'
 gem 'bootstrap-select-rails'
 gem 'fastclick-rails'
+gem 'puma'
 
 gem 'jasny-bootstrap-rails'
 
